@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chẩn đoán dinh dưỡng cây trồng</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='web.css') }}">
+    <link href='https://cdn.boxicons.com/3.0.3/fonts/basic/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="hop_chinh">
+
+        <h1 class="tieude">Chẩn đoán thiếu dinh dưỡng qua lá cây</h1>
+        <p class="canhbao">
+            Vui lòng chụp rõ nét, không chỉnh sửa ảnh để hệ thống nhận dạng
+        </p>
+
+        <!-- FORM TẢI ẢNH -->
+        <form method="post" enctype="multipart/form-data">
+
+            <input type="file"id="file-upload"class="nutnopanh"name="file"accept="image/*"required>
+
+            <label for="file-upload" class="label-nut-anh">
+                <svg xmlns="http://www.w3.org/2000/svg"width="24"height="24"fill="currentColor"viewBox="0 0 24 24"><path d="M3 13h8v8h2v-8h8v-2h-8V3h-2v8H3z"></path></svg> <!-- icon-->
+                <span>Chọn hoặc kéo thả ảnh</span>
+            </label>
+
+            <br><br>
+
+            <button class="phantich" type="submit">
+                Phân tích
+            </button>
+
+        </form>
+
+        <!--thongboa loi-->
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        <!-- hien thi anh -->
+        {% if image_file %}
+            <h2>Ảnh vừa tải lên:</h2>
+            <img src="{{ url_for('hien_thi_anh', tenfile=image_file) }}"
+                 class="image-preview"
+                 alt="Uploaded leaf">
+        {% endif %}
+
+        <!-- trakq -->
+        {% if results %}
+            <div class="result">
+
+                <h2>Kết quả phân tích:</h2>
+                <p>Những chất cần bổ sung:</p>
+
+                {% for chat in results %}
+                    <div class="element">
+                        <h3>{{ chat.tenchat }}</h3>
+
+                        <p>
+                            <strong>Triệu chứng điển hình:</strong>
+                            {{ chat.trieuchung }}
+                        </p>
+
+                        <p class="advice">
+                            <strong>Gợi ý bổ sung:</strong>
+                            {{ chat.goi_y_bosung }}
+                        </p>
+                    </div>
+                {% endfor %}
+
+                <p>
+                    <i>
+                        Lưu ý: Kết quả mang tính tham khảo, dựa trên xử lý ảnh cơ bản.
+                        Để chẩn đoán chính xác hơn, bạn nên kết hợp quan sát thực tế.
+                    </i>
+                </p>
+
+            </div>
+        {% endif %}
+
+    </div>
+</body>
+</html>

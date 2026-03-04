@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chẩn đoán dinh dưỡng cây trồng</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='phantichchu.css') }}">
+</head>
+<body>
+    <div class="hopchinh">
+        <h1>Chẩn đoán thiếu dinh dưỡng qua triệu chứng</h1>
+        <p class="phude">Hãy chọn những triệu chứng bạn quan sát được trên cây:</p>
+
+        <form method="POST" class="symptom-form">
+            <div class="symptom-grid">
+                {% for trieuchung in danhsach_trieuchung %}
+                <label class="symptom-item">
+                    <input type="checkbox" name="trieuchung" value="{{ trieuchung }}"
+                           {% if trieuchung in trieuchung_dachon %}checked{% endif %}>
+                    <span>{{ trieuchung }}</span>
+                </label>
+                {% endfor %}
+            </div>
+
+            <button type="submit" class="btn">Xem kết quả</button>
+        </form>
+
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                <div class="flash-message">
+                    {% for message in messages %}
+                        <p>{{ message }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+
+        {% if ketqua %}
+            <div class="khuvuctraketqua">
+                <div class="ketqua">Kết quả chẩn đoán</div>
+                <div class="element-grid">
+                    {% for chat in ketqua %}
+                        <div class="element-card">
+                            <h3>{{ chat.tenchat }}</h3>
+                            <div class="element-symptom">
+                                <strong>Triệu chứng điển hình:</strong> {{ chat.trieuchung }}
+                            </div>
+                            <div class="bosungdinhduong">
+                                <strong>Gợi ý bổ sung:</strong> {{ chat.goi_y_bosung }}
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+                <p class="canhbao">
+                    * Kết quả dựa trên đối chiếu triệu chứng, có thể thiếu nhiều chất cùng lúc.
+                </p>
+            </div>
+        {% endif %}
+    </div>
+</body>
+</html>
