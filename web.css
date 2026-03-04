@@ -1,0 +1,135 @@
+/* Giao diện tổng thể */
+body {
+    font-family: 'Inter', 'Segoe UI', Roboto, sans-serif;
+    background-image: url(anh2.png);
+    background-size: cover;
+    margin: 0;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    color: #333;
+}
+
+/* Thẻ chính */
+.hop_chinh {
+    max-width: 800px;
+    width: 100%;
+    background: #ffffff;
+    padding: 40px;
+    border-radius: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    text-align: center;
+}
+
+.tieude {
+    color: #1b5e20;
+    font-size: 28px;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.canhbao {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* Nút bấm và Form */
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.nutnopanh { display: none; }
+
+.label-nut-anh {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+    padding: 14px 28px;
+    background-color: #ffffff;
+    color: #2e7d32;
+    border: 2px dashed #2e7d32;
+    border-radius: 12px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.label-nut-anh:hover {
+    background-color: #f1f8e9;
+    transform: translateY(-2px);
+}
+
+.phantich {
+    background-color: #2e7d32;
+    color: white;
+    border: none;
+    padding: 14px 40px;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+    box-shadow: 0 4px 14px rgba(46, 125, 50, 0.3);
+}
+
+.phantich:hover {
+    background-color: #1b5e20;
+    transform: scale(1.05);
+}
+
+/* Xem trước ảnh */
+.image-preview {
+    max-width: 100%;
+    height: auto;
+    border-radius: 15px;
+    margin-top: 20px;
+    border: 4px solid #f1f8e9;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+
+/* Kết quả phân tích */
+.result {
+    margin-top: 40px;
+    text-align: left;
+    padding-top: 20px;
+    border-top: 2px solid #f1f8e9;
+}
+
+.element {
+    background-color: #f9fbf9;
+    padding: 20px;
+    border-radius: 15px;
+    border-left: 5px solid #4caf50;
+    margin-bottom: 20px;
+}
+
+.element h3 {
+    margin-top: 0;
+    color: #2e7d32;
+    display: flex;
+    align-items: center;
+}
+
+.advice {
+    color: #1b5e20;
+    background: #e8f5e9;
+    padding: 10px;
+    border-radius: 8px;
+    display: block;
+}
+
+.flash {
+    color: #d32f2f;
+    background: #ffebee;
+    padding: 10px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
